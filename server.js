@@ -3,10 +3,10 @@ var express = require("express");
 var qs = require("querystring");
 var cookie = require("cookie-parser");
 
-var clientId = process.env.Client_ID;
-var clientSecret = process.env.Client_Secret;
-
-var redirect_uri = "http://explorify.glitch.me/callback";
+var config = require("./config.js");
+var clientId = config.clientId;
+var clientSecret = config.clientSecret;
+var redirect_uri = config.redirect_uri;
 
 var SpotifyWebApi = require("spotify-web-api-node");
 
@@ -14,7 +14,7 @@ var SpotifyWebApi = require("spotify-web-api-node");
 var spotifyApi = new SpotifyWebApi({
   clientId: clientId,
   clientSecret: clientSecret,
-  redirectUri: "http://explorify.glitch.me/callback"
+  redirectUri: redirect_uri
 });
 
 //scopes for authorization
@@ -112,6 +112,6 @@ app.get("/rec/genres", function(req, res) {
 });
 
 // listen for requests :)
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
+const listener = app.listen(3000, () => {
+  console.log("Your app is listening on port " + 3000);
 });
