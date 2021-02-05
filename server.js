@@ -13,7 +13,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/explore", (req, res) => {
-  console.log("the access token is " + req.query.access_token);
   res.sendFile(__dirname + "/views/explore.html");
 });
 ;
