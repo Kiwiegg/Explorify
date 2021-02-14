@@ -3,6 +3,7 @@ var express = require("express");
 var cookie = require("cookie-parser");
 
 var app = express();
+app.use(express.static("src"));
 app.use(express.static("public")).use(cookie());
 
 var api = require("./routes/api.js");

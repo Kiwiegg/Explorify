@@ -1,0 +1,105 @@
+.song-list-container {
+  max-width: 1000px;
+  height: 100%;
+  background-color: #fff;
+  margin: 0 auto;
+  box-shadow: 0 2px 40px rgb(80 80 80 / 5%);
+}
+
+.btn-sm{
+  color: #000000;
+}
+
+.song-list {
+  height: 100%;
+  display : flex;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.track {
+  text-decoration: none;
+  width: 100%;
+  height: 128px;
+  padding: 0;
+  position: relative;
+}
+
+.track:hover .image__display{
+  transform: scale(1.2);
+}
+
+.track::after {
+  position: absolute;
+  content: '';
+  top: 20px;
+  bottom: 20px;
+  left: 185px;
+  right: 10px;
+  border-bottom: 1px solid #dfe1e6;
+  transition: 0.3s;
+}
+
+.track:hover::after {
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+.song__display__container {
+  display: flex;
+  flex-direction: row;
+  padding: 15px 35px ;
+}
+
+.track__number {
+  color: #aba5c3;
+  padding-right: 30px;
+  height: 20px;
+  text-align: center;
+  align-self: center;
+}
+
+.image__display {
+  background-color: #ffffff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border-radius: 5px;
+  width: 80px;
+  height: 80px;
+  margin-right: 30px;
+  transition: transform 0.2s;
+  box-shadow: 0 6px 8px -4px rgb(0 0 0 / 30%);
+}
+
+.info__display {
+  height: 65px;
+  align-self: center;
+}
+
+.info__display .songname{
+  color: #50496d;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.artists__display {
+  list-style-type: none;
+  overflow-x: hidden;
+  white-space: nowrap;
+  margin-top: 10px;
+}
+
+li.artist {
+  color: #50496d;
+  font-size: 12px;
+  display: inline;
+}
+
+li.artist::after {
+  content: ", ";
+}
+
+li.artist:last-child::after {
+  content: "";
+}

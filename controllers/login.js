@@ -5,7 +5,7 @@ var clientId = config.clientId;
 var redirect_uri = config.redirect_uri;
 
 //scopes for authorization
-var scopes = ["playlist-modify-public"];
+var scopes = ["playlist-modify-public", "user-top-read"];
 
 exports.get = (req, res) => {
     var stateKey = "spotify_auth_state";

@@ -1,23 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A cool thing made with Glitch">
 
-    <title>Welcome to Glitch!</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A cool thing made with Glitch">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
 
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-  </head>
-  <body>
-    <main>
-      <h2>Oh hi, you've logined in</h2>
-      
-      <a id="genres" class="btn btn-sm btn-primary">What's my top played songs?</a>
-    </main>
-    <script src = "/app.js" defer></script>
-  </body>
+  <title>Explorify - Explore new tracks and generate new playlists</title>
+
+  <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+  <!-- import the webpage's stylesheet -->
+  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/songlist.css">
+  <link rel="stylesheet" href="/navbar.css">
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- Sidebar Nav -->
+    <div class="sidenav">
+      <a href="/explore" class="app-icon">ICON</a>
+      <a href="/explore" class="app-nav__link">
+        <div class="nav__icon">
+          <i class="fas fa-home fa-2x"></i>
+        </div>
+        <span class="nav__text">About</span>
+      </a>
+      <a href="/explore" class="app-nav__link current">
+        <div class="nav__icon">
+          <i class="fas fa-search fa-2x"></i>
+        </div>
+        <span class="nav__text">Explore</span>
+      </a>
+      <a href="/explore" class="app-nav__link">
+        <div class="nav__icon">
+          <i class="fas fa-save fa-2x"></i>
+        </div>
+        <span class="nav__text">Saved</span>
+      </a>
+    </div>
+
+    <!-- main app -->
+    <div class="app">
+      <div class="song-list-container">
+        <button id="btn__getTracks" class="btn-sm btn-primary">What's my top played songs?</button>
+        <div class="song-list" id="show_top_tracks"></div>
+      </div>    
+    </div>
+  </div>
+
+  <script src="/app.js" defer></script>
+</body>
+
 </html>
