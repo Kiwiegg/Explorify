@@ -2,20 +2,156 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Kumbh Sans', sans-serif;
+    font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif; 
     scroll-behavior: smooth;
-    background-color: #f9f9f9;
   }
   
   .app-container {
     padding: 0 0 0 100px;
     position: relative;
-    height: 100vh;
-    display: block;
+    display: inline-block;
   }
   
   .app {
     height: 100%;
     padding: 0px 50px;
     margin: 0 auto;  
+    display: flex;
+    flex-direction: row;
+  }
+
+  .content-container{
+    max-width: 1100px;
+    min-height: 100%;
+    background-color: #fff;
+    margin: 0 100px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .app-image{
+    min-height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 8px 4px -4px gray;
+    position: relative;
+  }
+
+  h2.image-title {
+    position: absolute;
+    width: 85%;
+    left: 80px;
+    bottom: 50px;
+    font-family: Cookie;
+    font-size: 60px;
+    background: transparent;
+    color: black;
+    text-align: left;
+    /* mix-blend-mode: difference; */
+  }
+
+  .app-header-container {
+    padding: 10px 30px;
+  }
+
+  .header-text {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .selection-box-container {
+    position: sticky;
+    top: 25px;
+    height: 700px;
+    max-width: 500px;
+    min-width: 500px;
+    margin-top: 150px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .selection-title {
+    margin: 20px 20px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    text-align: center;
+    border-bottom: 1px solid #d8d8d8;  
+    font-weight: bold;
+  }
+
+  .selection-totalSelected {
+    margin: 0 30px;
+    font-size: 13px;
+  }
+
+  .selected-tracks-container  {
+    margin: 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; 
+  }
+
+  .selected-tracks-container .track-container {
+    min-width: 200px;
+    max-width: 300px;
+    max-height: 50px;
+    background-color: #86155e;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .selected-track {   
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; 
+    display: flex;
+    flex-direction: row; 
+    transition: opacity .2s, visibility .2s;
+  }
+
+  .track-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .selected-tracks-container .track-container:hover .track-mask {
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+  .selected-track .track-image {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+
+  .selected-track .track-name {
+    height: 50%;
+    align-self: center;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    padding-right: 10px;
   }

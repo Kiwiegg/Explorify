@@ -15,14 +15,34 @@ router.get("/toptracks", (req, res) => {
         res.status(400).send("Bad Request");
         return;
     }
-    
+
     var spotifyApi = new SpotifyWebApi({
         accessToken: access_token
-      });
+    });
 
-    spotifyApi.getMyTopTracks({limit: 20, time_range: 'medium_term'}).then(data => {
+    spotifyApi.getMyTopTracks({ limit: 20, time_range: 'medium_term' }).then(data => {
         let topArtists = data.body.items;
         res.send(topArtists);
+    }, err => {
+        console.log('Something went wrong!', err);
+    });
+});
+
+router.get("/getTrack", (req, res) => {
+    var access_token = req.query.accesstoken;
+    var id = req.query.id;
+
+    if (!access_token) {
+        res.status(400).send("Bad Request");
+        return;
+    }
+
+    var spotifyApi = new SpotifyWebApi({
+        accessToken: access_token
+    });
+
+    spotifyApi.getTrack(id).then(data => {
+        res.send(data.body);
     }, err => {
         console.log('Something went wrong!', err);
     });

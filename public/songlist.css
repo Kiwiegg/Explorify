@@ -1,15 +1,3 @@
-.song-list-container {
-  max-width: 1000px;
-  height: 100%;
-  background-color: #fff;
-  margin: 0 auto;
-  box-shadow: 0 2px 40px rgb(80 80 80 / 5%);
-}
-
-.btn-sm{
-  color: #000000;
-}
-
 .song-list {
   height: 100%;
   display : flex;
@@ -17,43 +5,56 @@
   padding-top: 50px;
 }
 
+.track-container {
+  min-height: 110px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  z-index: 0;
+}
 .track {
   text-decoration: none;
-  width: 100%;
-  height: 128px;
+  background-color: transparent;
+  width: 85%;
+  height: 100%;
   padding: 0;
   position: relative;
+  line-height: 30px;
+  transition: 0.3s;
+  animation-duration: 0.5s;
 }
-
 .track:hover .image__display{
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
-.track::after {
+.track:hover::before, .track:hover .info__display, .track:hover .track_length {
+  background: #f3f3f3;
+  transition: 0.3s;
+}
+
+.track::before {
   position: absolute;
   content: '';
   top: 20px;
   bottom: 20px;
-  left: 185px;
+  left: 195px;
   right: 10px;
   border-bottom: 1px solid #dfe1e6;
   transition: 0.3s;
-}
-
-.track:hover::after {
-  background: #fafafa;
-  transition: 0.3s;
+  z-index: 1;
 }
 
 .song__display__container {
   display: flex;
   flex-direction: row;
   padding: 15px 35px ;
+  position: relative;
 }
 
 .track__number {
   color: #aba5c3;
-  padding-right: 30px;
+  margin-right: 30px;
+  width: 20px;
   height: 20px;
   text-align: center;
   align-self: center;
@@ -75,6 +76,7 @@
 .info__display {
   height: 65px;
   align-self: center;
+  z-index: 1;
 }
 
 .info__display .songname{
@@ -87,7 +89,6 @@
   list-style-type: none;
   overflow-x: hidden;
   white-space: nowrap;
-  margin-top: 10px;
 }
 
 li.artist {
@@ -103,3 +104,30 @@ li.artist::after {
 li.artist:last-child::after {
   content: "";
 }
+
+.track_length {
+  position: absolute;
+  height: 5px;
+  right: 35px;
+  bottom: 50px;
+  font-size: 12px;
+  color: #50496d;
+  z-index: 1;
+}
+
+.add-button {
+  height: 25px;
+  width: 50px;
+  cursor: pointer;
+  margin-top: 64.5px;
+  text-align: center;
+  transition: ease 0.2s;
+  border-radius: 2px;
+  background-color: #ffffff;
+}
+
+.add-button:not(.nohover):hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+

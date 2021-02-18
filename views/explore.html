@@ -8,10 +8,12 @@
   <meta name="description" content="A cool thing made with Glitch">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
     integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cookie" />
 
   <title>Explorify - Explore new tracks and generate new playlists</title>
 
-  <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
   <!-- import the webpage's stylesheet -->
   <link rel="stylesheet" href="/app.css">
   <link rel="stylesheet" href="/songlist.css">
@@ -46,11 +48,26 @@
 
     <!-- main app -->
     <div class="app">
-      <div class="song-list-container">
-        <button id="btn__getTracks" class="btn-sm btn-primary">What's my top played songs?</button>
+      <div class="content-container">
+        <div class="app-image" style='background-image: url("/background.jpg");'>
+          <h2 class="image-title">Discover new tracks <br/>tailored to your own tastes</h2>
+        </div>
+        <div class="app-header-container"> 
+          <span class="header-text">
+            Select any many songs as you like, and we'll create playlists based on your choices.
+            <br/> Let's start from some of your favourites!
+          </span>
+        </div>
         <div class="song-list" id="show_top_tracks"></div>
-      </div>    
+      </div>  
+      <!-- Selection Box -->
+      <div class="selection-box-container">
+        <div class="selection-title">Added songs</div>
+        <div class="selection-totalSelected" id="total-selected">Number of songs selected: 0</div>
+        <div class="selected-tracks-container"></div>
+      </div>  
     </div>
+    
   </div>
 
   <script src="/app.js" defer></script>
