@@ -4,7 +4,7 @@ const myStorage = window.localStorage;
 const apiURI = "http://localhost:3000/api/";
 
 myStorage.setItem('num_of_songs_selected', 0);
-myStorage.setItem('songs_selected', '');
+myStorage.setItem('songs-selected', '');
 
 window.addEventListener('load', () => {
     if (!params.has('access_token')) {
@@ -40,24 +40,40 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 const add_function = (e) => {
-    var id = e.target.id.substring(7);
-    var access_token = myStorage.getItem('access_token');
     if (e.target.disabled) {
         return;
     }
+
+    // update num of songs
+    var num = parseInt(myStorage.getItem('num_of_songs_selected'), 10);
+
+    if (num >= 12) {
+        return;
+    }
+    
+    myStorage.setItem('num_of_songs_selected', num + 1);
+    e.target.className = 'add-button nohover';
+    e.target.disabled = true;
+
+    var id = e.target.id.substring(7);
+    var access_token = myStorage.getItem('access_token');
+
     fetch(apiURI + "getTrack?accesstoken=" + access_token + "&id=" + id)
         .then(response => response.json())
         .then(data => {
             // console.log(data);
             add_song(data);
+            var songlist = myStorage.getItem('songs-selected');
+            if (songlist == '') {
+                songlist = data.id;
+            } else {
+                songlist += "_";
+                songlist += data.id;
+            }
+            myStorage.setItem('songs-selected', songlist);
+            // console.log(myStorage.getItem('songs-selected'));
         })
         .catch(Error => { console.log(Error) })
-
-    // update button features
-    var num = parseInt(myStorage.getItem('num_of_songs_selected'), 10);
-    myStorage.setItem('num_of_songs_selected', num + 1);
-    e.target.className = 'add-button nohover';
-    e.target.disabled = true;
 }
 
 const add_song = (element) => {
@@ -167,10 +183,25 @@ const remove_song = (e) => {
     if (el.className != 'track__container') {
         return;
     }
+    var id = el.id.substring(2);
+    var songlist = myStorage.getItem('songs-selected');
+    songlist = songlist.replace(id, '');
+    songlist = songlist.replace('__', '_');
+    if (songlist.charAt(songlist.length - 1) == '_') {
+        songlist = songlist.slice(0, -1);
+    } else if (songlist.charAt(0) == '_') {
+        songlist  = songlist.slice(1);
+    } else if (songlist == '_') {
+        songlist = '';
+    }
+    myStorage.setItem('songs-selected', songlist);
+    // console.log(myStorage.getItem('songs-selected'));
+
     var num = parseInt(myStorage.getItem('num_of_songs_selected'), 10);
     myStorage.setItem('num_of_songs_selected', num - 1);
 
-    var button = document.getElementById('button-' + el.id.substring(2));
+
+    var button = document.getElementById('button-' + id);
     button.disabled = false;
 
     el.remove();
