@@ -97,18 +97,29 @@
     flex-direction: row; 
   }
 
-  .selected-tracks-container .track-container {
+  .track__container {
     min-width: 200px;
     max-width: 300px;
-    max-height: 50px;
-    background-color: #86155e;
+    min-height: 50px;
+    background-color: #FC766AFF;
     border-radius: 5px;
     margin-right: 20px;
     margin-bottom: 20px;
     position: relative;
     cursor: pointer;
+    animation: scale-in-center 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   }
 
+  @keyframes scale-in-center {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
   .selected-track {   
     position: absolute;
     top: 0;
@@ -117,23 +128,31 @@
     right: 0; 
     display: flex;
     flex-direction: row; 
-    transition: opacity .2s, visibility .2s;
+    transition: ease 0.3s;  
   }
 
   .track-mask {
     position: absolute;
-    top: 0;
+    top: 13px;
     bottom: 0;
     left: 0;
     right: 0;
     color: #fff;
+    font-weight: bold;
     visibility: hidden;
     opacity: 0;
+    transition: ease 0.3s;
+    text-align: center;
+    justify-self: centers;
   }
 
-  .selected-tracks-container .track-container:hover .track-mask {
+  .track__container:hover .track-mask {
     visibility: visible;
     opacity: 1;
+  }
+
+  .track__container:hover .selected-track {
+    opacity: 0.1;
   }
 
 
@@ -150,7 +169,7 @@
   .selected-track .track-name {
     height: 50%;
     align-self: center;
-    color: #fff;
+    color: #000000;
     font-size: 12px;
     text-align: center;
     padding-right: 10px;

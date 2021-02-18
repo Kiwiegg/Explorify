@@ -4,6 +4,7 @@ const myStorage = window.localStorage;
 const apiURI = "http://localhost:3000/api/";
 
 myStorage.setItem('num_of_songs_selected', 0);
+myStorage.setItem('songs_selected', '');
 
 window.addEventListener('load', () => {
     if (!params.has('access_token')) {
@@ -29,26 +30,10 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             // console.log(data);
-            var div_list = document.getElementById("show_top_tracks");
-            div_list.innerHTML = '';
             var num = 1;
             data.forEach(element => {
-                var track_container = document.createElement('div');
-                track_container.className = 'track-container animate__animated animate__fadeInDown';
-                track_container.style.animationDelay = `${0.1 * num}s`;
-                div_list.appendChild(track_container);
-
-                track_container.innerHTML += `<a class="track" id=${element.id} href=${element.external_urls.spotify} target="_blank">`;
                 build_song(element, num);
                 num++;
-                track_container.innerHTML += '</a>';
-
-                var add_button = document.createElement('button');
-                add_button.className = 'add-button';
-                add_button.id = 'button-' + element.id;
-                add_button.innerHTML = 'ADD';
-                track_container.appendChild(add_button);
-                add_button.addEventListener('click', add_function);
             });
         })
         .catch(Error => { console.log(Error) })
@@ -61,15 +46,15 @@ const add_function = (e) => {
         return;
     }
     fetch(apiURI + "getTrack?accesstoken=" + access_token + "&id=" + id)
-    .then(response => response.json())
-    .then(data => {
-        // console.log(data);
-        add_song(data);
-    })
-    .catch(Error => { console.log(Error) })
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data);
+            add_song(data);
+        })
+        .catch(Error => { console.log(Error) })
 
     // update button features
-    var num =  parseInt(myStorage.getItem('num_of_songs_selected'), 10);
+    var num = parseInt(myStorage.getItem('num_of_songs_selected'), 10);
     myStorage.setItem('num_of_songs_selected', num + 1);
     e.target.className = 'add-button nohover';
     e.target.disabled = true;
@@ -79,7 +64,8 @@ const add_song = (element) => {
     var container = document.getElementsByClassName('selected-tracks-container')[0];
 
     var track_container = document.createElement('div');
-    track_container.className = 'track-container';
+    track_container.className = 'track__container';
+    track_container.id = 'c-' + element.id;
     container.appendChild(track_container);
 
     var track_mask = document.createElement('div');
@@ -98,12 +84,26 @@ const add_song = (element) => {
 
     var name = document.createElement('div');
     name.className = 'track-name';
-    name.innerHTML =  element.name;
+    name.innerHTML = element.name;
     track.appendChild(name);
+
+    track_container.addEventListener('click', remove_song);
 };
 
 const build_song = (element, num) => {
-    var link = document.getElementById(element.id);
+    var div_list = document.getElementById("show_top_tracks");
+
+    var track_container = document.createElement('div');
+    track_container.className = 'track-container animate__animated animate__fadeInDown';
+    track_container.style.animationDelay = `${0.1 * num}s`;
+    div_list.appendChild(track_container);
+
+    var link = document.createElement('a');
+    link.className = 'track';
+    link.id = element.id;
+    link.href = element.external_urls.spotify;
+    link.target = '_blank';
+    track_container.appendChild(link);
 
     // create container div
     var song_display = document.createElement('div');
@@ -150,4 +150,28 @@ const build_song = (element, num) => {
     song_display.appendChild(track_length);
 
     link.appendChild(song_display);
+
+    var add_button = document.createElement('button');
+    add_button.className = 'add-button';
+    add_button.id = 'button-' + element.id;
+    add_button.innerHTML = 'ADD';
+    track_container.appendChild(add_button);
+    add_button.addEventListener('click', add_function);
+};
+
+const remove_song = (e) => {
+    var el = e.target.parentNode;
+    if (el.className != 'track__container') {
+        el = el.parentNode;
+    }
+    if (el.className != 'track__container') {
+        return;
+    }
+    var num = parseInt(myStorage.getItem('num_of_songs_selected'), 10);
+    myStorage.setItem('num_of_songs_selected', num - 1);
+
+    var button = document.getElementById('button-' + el.id.substring(2));
+    button.disabled = false;
+
+    el.remove();
 };
