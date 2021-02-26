@@ -158,7 +158,11 @@ const build_song = (element, num) => {
     track_length.className = 'track_length';
     var min = Math.floor(element.duration_ms / 60000);
     var sec = Math.floor((element.duration_ms - min * 60000) / 1000);
-    track_length.innerHTML = min + ':' + sec;
+    if (sec < 10) {
+        track_length.innerHTML = min +  ":0" + sec;
+    } else {
+        track_length.innerHTML = min + ':' + sec;
+    } 
 
     song_display.appendChild(number);
     song_display.appendChild(image_display);
@@ -212,10 +216,14 @@ explore_button.addEventListener('click', () => {
     if (myStorage.getItem("num_of_songs_selected") == 0) {
         return;
     }
+    var description = document.getElementById('app-description');
+    description.innerHTML = '';
+
     document.getElementById("explore").disabled = true;
     setTimeout(function(){
         document.getElementById("explore").disabled = false;
     },1500);
+
     var access_token = myStorage.getItem('access_token');
     var songlist = myStorage.getItem("songs-selected");
 

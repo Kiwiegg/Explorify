@@ -6,19 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A cool thing made with Glitch">
 
-    <title>Welcome to Glitch!</title>
+    <link rel="stylesheet" href="/login.css">
 
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet">
 
-    <!-- import the webpage's client-side javascript file -->
+    <script src="/login.js" defer></script>
+
   </head>
   <body>
-    <main>
-      <h2>Oh hi,</h2>      
-      <a id="login" href="/api/login" class="btn btn-sm btn-primary">Log In With Spotify</a>
-    </main>
-    
+    <div class="main-container">
+      <div class="title-container">
+        <span class="title">Explorify</span>
+        <span class="title-text">Explore new tracks tailored to your own tastes</span>
+      </div>
+      <button class="button" id='button'>
+        Connect with Spotify
+        <div class="__horizontal"></div>
+        <div class="__vertical"></div>
+      </button>
+    </div>
   </body>
 </html>
