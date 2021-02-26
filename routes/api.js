@@ -48,4 +48,41 @@ router.get("/getTrack", (req, res) => {
     });
 });
 
+router.get("/getRec", (req, res) => {
+    var access_token = req.query.accesstoken;
+    var songlist = req.query.list.split("_");
+
+    if (!access_token) {
+        res.status(400).send("Bad Request");
+        return;
+    }
+
+    var spotifyApi = new SpotifyWebApi({
+        accessToken: access_token
+    });
+
+    var total_limit = 20;
+    var current_limit = total_limit;
+
+    var chunks = Math.ceil(songlist.length / 5);
+
+    var recommendations = [];
+
+    for (i=0; i<songlist.length; i+=5) {
+        templist = songlist.slice(i, Math.min(i+5, songlist.length));
+        spotifyApi.getRecommendations({seed_tracks: templist, limit: Math.min(current_limit, Math.ceil(total_limit / chunks))}).then(data => {
+            data.body.tracks.forEach((track) => {
+                recommendations.push(track);
+                if (recommendations.length == total_limit) {
+                    res.send(recommendations);
+                    return;
+                }
+            });   
+        }, err => {
+            console.log('Something went wrong!', err);
+        });
+        current_limit = Math.max(0, current_limit - Math.ceil(total_limit / chunks));
+    }   
+});
+
 module.exports = router;

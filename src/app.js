@@ -200,9 +200,35 @@ const remove_song = (e) => {
     var num = parseInt(myStorage.getItem('num_of_songs_selected'), 10);
     myStorage.setItem('num_of_songs_selected', num - 1);
 
-
     var button = document.getElementById('button-' + id);
-    button.disabled = false;
-
+    if (button) {
+        button.disabled = false;
+    }
     el.remove();
 };
+
+var explore_button = document.getElementById('explore');
+explore_button.addEventListener('click', () => {
+    if (myStorage.getItem("num_of_songs_selected") == 0) {
+        return;
+    }
+    document.getElementById("explore").disabled = true;
+    setTimeout(function(){
+        document.getElementById("explore").disabled = false;
+    },1500);
+    var access_token = myStorage.getItem('access_token');
+    var songlist = myStorage.getItem("songs-selected");
+
+    fetch(apiURI + 'getRec?accesstoken=' + access_token + '&list=' + songlist)
+        .then(response => response.json())
+        .then(data => {
+            var div_list = document.getElementById("show_top_tracks");
+            div_list.innerHTML = '';
+            var num = 1;
+            data.forEach((element) => {               
+                build_song(element, num);
+                num++;
+            });
+        })
+        .catch(Error => { console.log(Error) })
+});
