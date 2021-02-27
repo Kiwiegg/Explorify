@@ -11,6 +11,14 @@
     position: relative;
     display: inline-block;
   }
+
+  @media only screen and (max-width: 1500px) {
+    .app-container {
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+    }
+  }
   
   .app {
     height: 100%;
@@ -21,14 +29,19 @@
   }
 
   .content-container{
-    max-width: 1100px;
-    min-width: 900px;
+    min-width: 47vw;
     min-height: 100%;
     background-color: #fff;
     margin: 0 100px;
     box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
     display: flex;
     flex-direction: column;
+  }
+
+  @media only screen and (max-width: 1500px) {
+    .content-container {
+      margin: 0 25px
+    }
   }
   
   .app-image{
@@ -64,19 +77,52 @@
     text-align: center;
   }
 
-  .selection-box-container {
-    position: sticky;
-    top: 25px;
-    height: 700px;
-    max-width: 500px;
-    min-width: 500px;
-    margin-top: 150px;
+  .right-container {
+    min-width: 26vw;
+    max-width: 26vw;
+  }
+
+  .config-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    height: 120px;
+    width: 100%;  
     box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
     border: 1px solid #ddd;
     display: flex;
     flex-direction: column;
   }
 
+  .config-box {
+    margin: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d8d8d8;
+  }
+  .config-box__label {
+    font-size: 12px;
+  }
+
+  .save-button {
+    position: relative;
+    display: block;
+    width: 40%;
+    height: 30px;
+    margin: auto;
+    cursor: pointer;
+  }
+  .selection-box-container {
+    position: sticky;
+    top: 25px;
+    height: 700px;
+    width: 100%;
+    margin-top: 25px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+  }
+  
   .selection-title {
     margin: 20px 20px;
     padding-bottom: 10px;
@@ -178,9 +224,11 @@
 
 .searchbutton-container {
   position: absolute;
+  display: block;
   left: 178px;
   bottom: 70px;
   height: 70px;
+  margin: 0 auto;
 }
 .searchbutton body {
   font-family: 'Rubik', sans-serif;

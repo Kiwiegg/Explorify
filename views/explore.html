@@ -8,8 +8,7 @@
   <meta name="description" content="A cool thing made with Glitch">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
     integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cookie" />
 
   <title>Explorify - Explore new tracks and generate new playlists</title>
@@ -50,28 +49,44 @@
     <div class="app">
       <div class="content-container">
         <div class="app-image" style='background-image: url("/background.jpg");'>
-          <h2 class="image-title">Discover new tracks <br/>tailored to your own tastes</h2>
+          <h2 class="image-title">Discover new tracks <br />tailored to your own tastes</h2>
         </div>
-        <div class="app-header-container" id='app-description'> 
+        <div class="app-header-container" id='app-description'>
           <span class="header-text">
             Select any many songs as you like, and we'll create playlists based on your choices.
-            <br/> Let's start from some of your favourites!
+            <br /> Let's start from some of your favourites!
           </span>
         </div>
         <div class="song-list" id="show_top_tracks"></div>
-      </div>  
-      <!-- Selection Box -->
-      <div class="selection-box-container">
-        <div class="selection-title">Added songs</div>
-        <div class="selection-totalSelected" id="total-selected">Number of songs selected: 0</div>
-        <div class="selected-tracks-container"></div>
-        <div class="searchbutton-container">
-          <button class="searchbutton get-rec" id='explore'>
-            <body>Explore</body></button>
+      </div>
+      <div class='right-container'>
+        <div class="config-container">
+          <div class="config-box">
+            <span class="config-box__label">Number of tracks in playlist</span>
+            <select name='track-number' id='numbers'>
+              <option value='10'>10</option>
+              <option value='20'>20</option>
+              <option value='30' selected="selected">30</option>
+              <option value='40'>40</option>
+              <option value='50'>50</option>
+            </select>
+          </div>
+          <button class="save-button">Save playlist to Spotify</button>
         </div>
-      </div>  
+        <!-- Selection Box -->
+        <div class="selection-box-container">
+          <div class="selection-title">Added songs</div>
+          <div class="selection-totalSelected" id="total-selected">Number of songs selected: 0/12</div>
+          <div class="selected-tracks-container"></div>
+          <div class="searchbutton-container">
+            <button class="searchbutton get-rec" id='explore'>
+              <body>Explore</body>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    
+
   </div>
 
   <script src="/app.js" defer></script>

@@ -20,7 +20,7 @@ router.get("/toptracks", (req, res) => {
         accessToken: access_token
     });
 
-    spotifyApi.getMyTopTracks({ limit: 20, time_range: 'medium_term' }).then(data => {
+    spotifyApi.getMyTopTracks({ limit: 30, time_range: 'medium_term' }).then(data => {
         let topArtists = data.body.items;
         res.send(topArtists);
     }, err => {
@@ -51,6 +51,7 @@ router.get("/getTrack", (req, res) => {
 router.get("/getRec", (req, res) => {
     var access_token = req.query.accesstoken;
     var songlist = req.query.list.split("_");
+    var num = req.query.num;
 
     if (!access_token) {
         res.status(400).send("Bad Request");
@@ -61,9 +62,13 @@ router.get("/getRec", (req, res) => {
         accessToken: access_token
     });
 
-    var total_limit = 20;
-    var current_limit = total_limit;
-
+    var total_limit;
+    if (num) {
+        total_limit = parseInt(num, 10);
+    } else {
+        total_limit = 30;
+    }
+    var current_limit  = total_limit;
     var chunks = Math.ceil(songlist.length / 5);
 
     var recommendations = [];

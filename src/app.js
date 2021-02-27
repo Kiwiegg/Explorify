@@ -21,7 +21,7 @@ window.addEventListener('load', () => {
 
 window.addEventListener('click', () => {
     var element = document.getElementById('total-selected');
-    element.innerHTML = 'Number of songs selected: ' + myStorage.getItem('num_of_songs_selected');
+    element.innerHTML = 'Number of songs selected: ' + myStorage.getItem('num_of_songs_selected') + '/12';
 });
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -227,7 +227,10 @@ explore_button.addEventListener('click', () => {
     var access_token = myStorage.getItem('access_token');
     var songlist = myStorage.getItem("songs-selected");
 
-    fetch(apiURI + 'getRec?accesstoken=' + access_token + '&list=' + songlist)
+    var num = document.getElementById('numbers').value;
+    console.log(num);
+
+    fetch(apiURI + 'getRec?accesstoken=' + access_token + '&list=' + songlist + '&num=' + num)
         .then(response => response.json())
         .then(data => {
             var div_list = document.getElementById("show_top_tracks");
