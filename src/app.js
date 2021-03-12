@@ -6,6 +6,8 @@ const apiURI = "http://localhost:3000/api/";
 myStorage.setItem('num_of_songs_selected', 0);
 myStorage.setItem('songs-selected', '');
 
+var save_button = document.getElementById('save_button');
+
 window.addEventListener('load', () => {
     if (!params.has('access_token')) {
         // console.log ("access_token: " + myStorage.getItem('access_token'));
@@ -73,7 +75,7 @@ const add_function = (e) => {
             myStorage.setItem('songs-selected', songlist);
             // console.log(myStorage.getItem('songs-selected'));
         })
-        .catch(Error => { console.log(Error) })
+        .catch(Error => { console.log(Error) });
 }
 
 const add_song = (element) => {
@@ -98,7 +100,7 @@ const add_song = (element) => {
     image.style['background-image'] = `url(${element.album.images[2].url})`;
     track.appendChild(image);
 
-    var name = document.createElement('div');
+    var name = document.createElement('p');
     name.className = 'track-name';
     name.innerHTML = element.name;
     track.appendChild(name);
@@ -216,6 +218,9 @@ explore_button.addEventListener('click', () => {
     if (myStorage.getItem("num_of_songs_selected") == 0) {
         return;
     }
+    save_button.disabled = false;
+    save_button.innerHTML = "Save playlist to Spotify";
+
     var description = document.getElementById('app-description');
     description.innerHTML = '';
 
@@ -228,7 +233,6 @@ explore_button.addEventListener('click', () => {
     var songlist = myStorage.getItem("songs-selected");
 
     var num = document.getElementById('numbers').value;
-    console.log(num);
 
     fetch(apiURI + 'getRec?accesstoken=' + access_token + '&list=' + songlist + '&num=' + num)
         .then(response => response.json())
@@ -242,4 +246,40 @@ explore_button.addEventListener('click', () => {
             });
         })
         .catch(Error => { console.log(Error) })
+});
+
+var name_input = document.getElementById('name-input');
+name_input.addEventListener('change', (e) => {
+    if (e.target.value == '') {
+        e.target.value = 'Explorify Mix';
+    }
+});
+
+save_button.addEventListener('click', () => {
+    save_button.disabled = true;
+    save_button.innerHTML = "Saving...";
+    var songlist = '';
+    if (document.getElementById('playlist-option').checked) {
+        songlist = myStorage.getItem('songs-selected');
+    }
+    var name = document.getElementById('name-input').value;
+    var access_token = myStorage.getItem('access_token');
+    list = document.getElementById("show_top_tracks");
+    if (list.hasChildNodes()) {
+        let children = list.childNodes;
+      
+        for (let i = 0; i < children.length; i++) {
+            if (songlist == '') {
+                songlist += children[i].childNodes[0].id;
+                continue;
+            }
+            songlist = songlist + '_' + children[i].childNodes[0].id;
+        }
+    }
+    fetch(apiURI + "savePlaylist?accesstoken=" + access_token + "&name=" + name + "&list=" + songlist)
+    .then(response => response.json())
+    .then(playlist => {
+        save_button.innerHTML = "Saved";
+    })
+    .catch(Error => { console.log(Error) });  
 });

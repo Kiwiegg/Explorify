@@ -68,26 +68,57 @@ router.get("/getRec", (req, res) => {
     } else {
         total_limit = 30;
     }
-    var current_limit  = total_limit;
+    var current_limit = total_limit;
     var chunks = Math.ceil(songlist.length / 5);
 
     var recommendations = [];
 
-    for (i=0; i<songlist.length; i+=5) {
-        templist = songlist.slice(i, Math.min(i+5, songlist.length));
-        spotifyApi.getRecommendations({seed_tracks: templist, limit: Math.min(current_limit, Math.ceil(total_limit / chunks))}).then(data => {
+    for (i = 0; i < songlist.length; i += 5) {
+        templist = songlist.slice(i, Math.min(i + 5, songlist.length));
+        spotifyApi.getRecommendations({ seed_tracks: templist, limit: Math.min(current_limit, Math.ceil(total_limit / chunks)) }).then(data => {
             data.body.tracks.forEach((track) => {
                 recommendations.push(track);
                 if (recommendations.length == total_limit) {
                     res.send(recommendations);
                     return;
                 }
-            });   
+            });
         }, err => {
             console.log('Something went wrong!', err);
         });
         current_limit = Math.max(0, current_limit - Math.ceil(total_limit / chunks));
-    }   
+    }
+});
+
+router.get("/savePlaylist", (req, res) => {
+    var access_token = req.query.accesstoken;
+    var songlist = req.query.list.split("_");
+    var name = req.query.name;
+
+    if (!access_token) {
+        res.status(400).send("Bad Request");
+        return;
+    }
+
+    var spotifyApi = new SpotifyWebApi({
+        accessToken: access_token
+    });
+
+    var playlist = null;
+    spotifyApi.createPlaylist(name).then(data => {
+        playlist = data.body;
+        songlist.forEach((element, i) => {
+            songlist[i] = "spotify:track:" + element;
+        });
+        spotifyApi.addTracksToPlaylist(playlist.id, songlist).then(data => {
+            res.send(playlist);
+        }, err => {
+            console.log('Something went wrong!', err);
+        });
+    }, err => {
+        console.log('welp!', err);
+    });
 });
 
 module.exports = router;
+

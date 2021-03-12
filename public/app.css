@@ -86,7 +86,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 100px;
-    height: 120px;
+    height: 200px;
     width: 100%;  
     box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
     border: 1px solid #ddd;
@@ -95,7 +95,7 @@
   }
 
   .config-box {
-    margin: 10px;
+    margin: 10px 10px 0 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #d8d8d8;
   }
@@ -103,6 +103,33 @@
     font-size: 12px;
   }
 
+  .playlist-name-container {
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .name-input {
+    border: 0 none;
+    border-bottom: 1px solid #d8d8d8;
+    font-size: 16px;
+  }
+
+  .name-input:focus {
+    outline: none;
+    border-bottom: 1px solid #8b1bad;
+  }
+
+  .playlist-option {
+    margin: 0 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #d8d8d8;
+  }
+
+  .playlist-option label {
+    font-size: 12px;
+  }
   .save-button {
     position: relative;
     display: block;
@@ -110,7 +137,15 @@
     height: 30px;
     margin: auto;
     cursor: pointer;
+    color: #fff;
+    background-image: linear-gradient(141deg,#6b0493,#8b1bad 40%,#8522c7);
+    border-radius: 2px;
   }
+
+  .save-button:disabled {
+    opacity: 0.6;
+  }
+
   .selection-box-container {
     position: sticky;
     top: 25px;
@@ -214,8 +249,7 @@
   }
 
   .selected-track .track-name {
-    height: 50%;
-    align-self: center;
+    margin: auto;
     color: #000000;
     font-size: 12px;
     text-align: center;

@@ -53,7 +53,7 @@
         </div>
         <div class="app-header-container" id='app-description'>
           <span class="header-text">
-            Select any many songs as you like, and we'll create playlists based on your choices.
+            Select any songs that catch your attention, and we'll create playlists based on your choices.
             <br /> Let's start from some of your favourites!
           </span>
         </div>
@@ -62,7 +62,7 @@
       <div class='right-container'>
         <div class="config-container">
           <div class="config-box">
-            <span class="config-box__label">Number of tracks in playlist</span>
+            <span class="config-box__label">Number of tracks</span>
             <select name='track-number' id='numbers'>
               <option value='10'>10</option>
               <option value='20'>20</option>
@@ -71,11 +71,19 @@
               <option value='50'>50</option>
             </select>
           </div>
-          <button class="save-button">Save playlist to Spotify</button>
+          <div class="playlist-name-container">
+            Playlist name:
+            <input id='name-input' type="text" class="name-input" value='Explorify Mix' spellcheck="false">
+          </div>
+          <div class="playlist-option"> 
+            <input type="checkbox" id="playlist-option">
+            <label for="playlist-option" >Include selected songs in playlist</label>
+          </div>
+          <button id='save_button' class="save-button">Save playlist to Spotify</button>
         </div>
         <!-- Selection Box -->
         <div class="selection-box-container">
-          <div class="selection-title">Added songs</div>
+          <div class="selection-title">Selected songs</div>
           <div class="selection-totalSelected" id="total-selected">Number of songs selected: 0/12</div>
           <div class="selected-tracks-container"></div>
           <div class="searchbutton-container">
