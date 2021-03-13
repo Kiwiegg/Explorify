@@ -24,24 +24,18 @@
 
     <!-- Sidebar Nav -->
     <div class="sidenav">
-      <a href="/explore" class="app-icon">ICON</a>
-      <a href="/explore" class="app-nav__link">
+      <div class="app-icon" style='background-image: url("/logo.png");'></div>
+      <a href="/explore" class="app-nav__link" id='about'>
         <div class="nav__icon">
           <i class="fas fa-home fa-2x"></i>
         </div>
         <span class="nav__text">About</span>
       </a>
-      <a href="/explore" class="app-nav__link current">
+      <a href="/explore" class="app-nav__link current" id='explore'>
         <div class="nav__icon">
           <i class="fas fa-search fa-2x"></i>
         </div>
         <span class="nav__text">Explore</span>
-      </a>
-      <a href="/explore" class="app-nav__link">
-        <div class="nav__icon">
-          <i class="fas fa-save fa-2x"></i>
-        </div>
-        <span class="nav__text">Saved</span>
       </a>
     </div>
 
@@ -98,6 +92,7 @@
   </div>
 
   <script src="/app.js" defer></script>
+  <script src="/navbar.js" defer></script>
 </body>
 
 </html>
