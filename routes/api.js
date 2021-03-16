@@ -8,6 +8,32 @@ var auth = require('../controllers/auth');
 router.get("/login", login.get);
 router.get("/callback", auth.get);
 
+router.get("/refresh", (req, res) => {
+    var access_token = req.query.accesstoken;
+    var refresh_token = req.query.refreshtoken;
+    
+    if (!access_token) {
+        res.status(400).send("Bad Request");
+        return;
+    }
+
+    var spotifyApi = new SpotifyWebApi({
+        accessToken: access_token,
+        refreshToken: refresh_token
+    });
+
+    spotifyApi.refreshAccessToken().then(
+        function(data) {
+          //console.log('The access token has been refreshed!');
+      
+          res.send(data.body);
+        },
+        function(err) {
+          console.log('Could not refresh access token', err);
+        }
+    );
+});
+
 router.get("/toptracks", (req, res) => {
     var access_token = req.query.accesstoken;
 

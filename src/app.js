@@ -26,7 +26,7 @@ window.addEventListener('click', () => {
     element.innerHTML = 'Number of songs selected: ' + myStorage.getItem('num_of_songs_selected') + '/12';
 });
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     var access_token = myStorage.getItem('access_token');
     fetch(apiURI + "toptracks?accesstoken=" + access_token)
         .then(response => response.json())
@@ -213,7 +213,7 @@ const remove_song = (e) => {
     el.remove();
 };
 
-var explore_button = document.getElementById('explore');
+var explore_button = document.getElementById('explore-button');
 explore_button.addEventListener('click', () => {
     if (myStorage.getItem("num_of_songs_selected") == 0) {
         return;

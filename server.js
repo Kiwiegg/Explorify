@@ -13,10 +13,14 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
+app.get("/about", (req, res) => {
+  res.sendFile(__dirname + "/views/about.html");
+});
+
 app.get("/explore", (req, res) => {
   res.sendFile(__dirname + "/views/explore.html");
 });
-;
+
 // listen for requests :)
 const listener = app.listen(3000, () => {
   console.log("Your app is listening on port " + 3000);
