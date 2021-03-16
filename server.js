@@ -2,9 +2,12 @@
 var express = require("express");
 var cookie = require("cookie-parser");
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
 var app = express();
-app.use(express.static("src"));
-app.use(express.static("public")).use(cookie());
+app.use(express.static(__dirname + "/src"));
+app.use(express.static(__dirname + "/public")).use(cookie());
 
 var PORT = process.env.port || 3000;
 
@@ -24,6 +27,6 @@ app.get("/explore", (req, res) => {
 });
 
 // listen for requests :)
-/* const listener = app.listen(PORT, () => {
+const listener = app.listen(PORT, () => {
   console.log("Your app is listening on port " + PORT);
-}); */
+}); 
