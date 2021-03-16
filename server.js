@@ -2,14 +2,11 @@
 var express = require("express");
 var cookie = require("cookie-parser");
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-
 var app = express();
 app.use(express.static(__dirname + "/src"));
 app.use(express.static(__dirname + "/public")).use(cookie());
 
-var PORT = process.env.port || 3000;
+var PORT = process.env.PORT || 3000;
 
 var api = require("./routes/api.js");
 app.use("/api", api);
