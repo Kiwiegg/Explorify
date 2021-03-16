@@ -51,6 +51,11 @@
     font-size: 13px;
   }
 
+  .fab {
+    transition: 0.3s;
+  }
+
   .fab:hover {
-    scale: 1.2;
+    transform: scale(1.2);
+    transition: 0.3s;
   }
