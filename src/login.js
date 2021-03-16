@@ -1,4 +1,4 @@
 var button = document.getElementById('button');
 button.addEventListener('click', () => {
-    window.location.href = "http://localhost:3000/api/login";
+    window.location.href = "https://explorify-app.herokuapp.com/api/login";
 })
