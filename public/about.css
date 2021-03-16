@@ -1,0 +1,38 @@
+.app-container {
+    padding: 0 0 0 150px;
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    height: 100%;  
+  }
+
+.main-container {
+    width: 800px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;  
+}
+
+h1 {
+    font-family: 'Architects Daughter';
+    color: #50496d;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: left;
+}
+
+p, li{
+    font-size: 18px;
+    font-family: 'Shippori Mincho B1', serif;
+}
+
+h3 {
+    font-family: 'Architects Daughter';
+    color: #50496d;
+    font-size: 25px;
+}
+
+link {
+    display: flex;
+    flex-direction: row;
+}
