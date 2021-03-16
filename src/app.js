@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const myStorage = window.localStorage;
 
-const apiURI = "http://localhost:3000/api/";
+const apiURI = "https://explorify-app.herokuapp.com/api/";
 
 myStorage.setItem('num_of_songs_selected', 0);
 myStorage.setItem('songs-selected', '');
