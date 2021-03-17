@@ -9,3 +9,5 @@ Check out the app at https://explorify-app.herokuapp.com/
 ## Screenshots
 
 Log-in screen 
+
+![alt text](https://github.com/Kiwiegg/Explorify/blob/main/public/login.png "log-in screen")
