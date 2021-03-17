@@ -15,3 +15,9 @@ Log-in screen
 Main app
 
 ![alt text](https://github.com/Kiwiegg/Explorify/blob/main/public/main%20app.png "main app")
+
+## Features I'm working on:
+
+- In browser music player - Listening to music while you explore 🎵
+- Search for songs directly - Easier for you to find songs you like 💯
+- Random playlist based on genres - If you are in the mood for a surprise 😆
