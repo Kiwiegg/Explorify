@@ -156,6 +156,8 @@
     border: 1px solid #ddd;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   .selection-title {
@@ -259,7 +261,6 @@
 .searchbutton-container {
   position: absolute;
   display: block;
-  left: 178px;
   bottom: 70px;
   height: 70px;
   margin: 0 auto;
